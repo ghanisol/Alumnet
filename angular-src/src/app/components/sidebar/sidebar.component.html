@@ -1,0 +1,18 @@
+<!-- Side Navbar -->
+<nav class="side-navbar">
+  <!-- Sidebar Header-->
+  <div class="sidebar-header d-flex align-items-center">
+    <div class="avatar"><img src="assets/img/ghani_pic.jpg" alt="..." class="img-fluid rounded-circle"></div>
+    <div class="title">
+      <h1 *ngIf="user" class="h4">{{user.name}}</h1>
+    </div>
+  </div>
+  <!-- Sidebar Navigations-->
+  <ul class="list-unstyled">
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/newsfeed']"> <i class="icon-home"></i>Newsfeed</a></li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/notifications']"> <i class="fa fa-bell-o"></i>Notifications</a></li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/chat']"> <i class="icon-mail"></i>Messages</a></li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/search']"> <i class="icon-search"></i>Search</a></li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/map']"> <i class="icon-grid"></i>Map</a></li>
+  </ul>
+</nav>

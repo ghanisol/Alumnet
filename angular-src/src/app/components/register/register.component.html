@@ -1,0 +1,58 @@
+<div class="login-page">
+  <div class="container d-flex align-items-center">
+    <div class="form-holder has-shadow">
+      <div class="row">
+        <!-- Logo & Information Panel-->
+        <div class="col-lg-6">
+          <div class="info d-flex align-items-center">
+            <div class="content">
+              <div class="logo">
+                <h1>AlumNET</h1>
+              </div>
+              <p>Connecting Lums Community</p>
+            </div>
+          </div>
+        </div>
+        <!-- Form Panel    -->
+        <div class="col-lg-6 bg-white">
+          <div class="form d-flex align-items-center">
+            <div class="content">
+              <!-- Form -->
+              <form id="register-form" (submit)="onRegisterSubmit()">
+
+                <div class="form-group">
+                  <input type="text" [(ngModel)]="name" name="name" class="input-material">
+                  <label class="label-material">Name</label>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" [(ngModel)]="username" name="username" class="input-material">
+                  <label class="label-material">Username</label>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" [(ngModel)]="email" name="email" class="input-material">
+                  <label class="label-material">Email</label>
+                </div>
+
+                <div class="form-group">
+                  <input type="password" [(ngModel)]="password" name="password" class="input-material">
+                  <label class="label-material">Password</label>
+                </div>
+
+                <input type="submit" value="Register" class="btn btn-primary">
+              </form>
+
+              <small>Already have an account? </small><a [routerLink]="['/login']" class="signup">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copyrights text-center">
+    <p>© 2017-2018 | Lahore University Of Management Sciences
+      <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+    </p>
+  </div>
+</div>
