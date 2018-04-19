@@ -2,9 +2,9 @@
 <nav class="side-navbar">
   <!-- Sidebar Header-->
   <div class="sidebar-header d-flex align-items-center">
-    <div class="avatar"><img src="assets/img/ghani_pic.jpg" alt="..." class="img-fluid rounded-circle"></div>
+    <a [routerLink]="['/editprofile']"><div class="avatar"><img src="assets/img/ghani_pic.jpg" alt="..." class="img-fluid rounded-circle"></div></a>
     <div class="title">
-      <h1 *ngIf="user" class="h4">{{user.name}}</h1>
+      <h1 *ngIf="user" class="h4">{{user.name.last_name}}</h1>
     </div>
   </div>
   <!-- Sidebar Navigations-->

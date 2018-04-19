@@ -17,18 +17,26 @@ import { SearchresultComponent } from './components/searchresult/searchresult.co
 import { EditprofileComponent } from './components/editprofile/editprofile.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { RegisterAlumniComponent } from './components/register-alumni/register-alumni.component';
+import { RegisterStudentComponent } from './components/register-student/register-student.component';
 
 import {FlashMessagesModule} from 'angular2-flash-messages';
 
 import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
+import {PostsService} from './services/posts.service';
 import {AuthGuard} from './guards/auth.guard';
 import {UnAuthGuard} from './guards/unauth.guard';
+import { NewpostComponent } from './components/newpost/newpost.component';
+
 
 const appRoutes: Routes = [
   {path:'', redirectTo:'newsfeed', pathMatch:'full'},
   {path:'newsfeed', component: NewsfeedComponent, canActivate:[AuthGuard]},
+  {path:'newpost', component: NewpostComponent, canActivate:[AuthGuard]},
   {path:'register', component: RegisterComponent, canActivate:[UnAuthGuard]},
+  {path:'register-alumni', component: RegisterAlumniComponent, canActivate:[UnAuthGuard]},
+  {path:'register-student', component: RegisterStudentComponent, canActivate:[UnAuthGuard]},
   {path:'login', component: LoginComponent, canActivate:[UnAuthGuard]},
   {path:'chat', component: ChatComponent, canActivate:[AuthGuard]},
   {path:'map', component: MapComponent, canActivate:[AuthGuard]},
@@ -51,7 +59,10 @@ const appRoutes: Routes = [
     SearchresultComponent,
     EditprofileComponent,
     FooterComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    RegisterAlumniComponent,
+    RegisterStudentComponent,
+    NewpostComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +71,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, AuthService, AuthGuard, UnAuthGuard],
+  providers: [ValidateService, AuthService, PostsService, AuthGuard, UnAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

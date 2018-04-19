@@ -5,15 +5,14 @@ import {PostsService} from '../../services/posts.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router';
 
-
 @Component({
-  selector: 'app-newsfeed',
-  templateUrl: './newsfeed.component.html',
-  styleUrls: ['./newsfeed.component.css']
+  selector: 'app-newpost',
+  templateUrl: './newpost.component.html',
+  styleUrls: ['./newpost.component.css']
 })
-export class NewsfeedComponent implements OnInit {
-  posts: Object;
+export class NewpostComponent implements OnInit {
   user_id: any;
+  message: String;
 
   constructor(
     private validateService: ValidateService,
@@ -21,17 +20,9 @@ export class NewsfeedComponent implements OnInit {
     private authService:AuthService,
     private postsService: PostsService,
     private router: Router
-  ) { }
+    ) { }
 
   ngOnInit() {
-    this.postsService.getPosts().subscribe(data => {
-      this.posts = data.posts;
-    },
-    err => {
-  	  console.log(err);
-  	  return false;
-    });
-
     this.authService.getProfile().subscribe(profile => {
       this.user_id = profile.user._id;
     },
@@ -41,31 +32,21 @@ export class NewsfeedComponent implements OnInit {
     });
   }
 
-  onCommentSubmit(post_id, comment) {
-    const newComment = {
-      post_id: post_id,
+  onPostSubmit() {
+    const newPost = {
       user_id: this.user_id,
-      comment_msg: comment
+      message: this.message
     };
 
-    // Add Comment
-    this.postsService.addComment(newComment).subscribe(data => {
+    // add Comment
+    this.postsService.addPost(newPost).subscribe(data => {
       if(data.success){
-        this.flashMessage.show('Comment Posted', {cssClass: 'alert-success', timeout: 3000});
+        this.flashMessage.show('Message Posted', {cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['/newsfeed']);
       } else {
         this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
         this.router.navigate(['/newsfeed']);
       }
-    });
-
-    // Force Refresh
-    this.postsService.getPosts().subscribe(data => {
-      this.posts = data.posts;
-    },
-    err => {
-  	  console.log(err);
-  	  return false;
     });
   }
 

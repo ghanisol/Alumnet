@@ -1,4 +1,4 @@
-<div class="page-content d-flex align-items-stretch">
+<div *ngIf="user" class="page-content d-flex align-items-stretch">
   <!-- Sidebar -->
   <app-sidebar></app-sidebar>
   <!-- Content -->
@@ -9,6 +9,179 @@
         <h2 class="no-margin-bottom">Edit Profile</h2>
       </div>
     </header>
-    
+
+    <div class="client card">
+      <div class="card-body text-center">
+        <div class="client-avatar"><img src="assets/img/ghani_pic.jpg" alt="..." class="img-fluid rounded-circle">
+          <div class="status bg-green"></div>
+        </div>
+        <div class="client-title">
+          <h3>{{user.name.first_name}} {{user.name.last_name}}</h3>
+          <span *ngIf="user.is_alumni === true">Alumni</span>
+          <span *ngIf="user.is_alumni === false">Student</span>
+        </div>
+      </div>
+    </div>
+
+
+    <section class="forms">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- Horizontal Form-->
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <form *ngIf="user.is_alumni === true" class="form-horizontal" (submit)="onSaveSubmit()">
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Email</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" disabled class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Password</label>
+                    <div class="col-sm-9">
+                      <input type="password" [(ngModel)]="password" name="password" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Major</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="major" name="major" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Research Area</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="research_area" name="research_area" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">University</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="university" name="university" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">City</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="city" name="city" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">State</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="state" name="state" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Country</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="country" name="country" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Facebook</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="link_facebook" name="link_facebook" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Twitter</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="link_twitter" name="link_twitter" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Linkedin</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="link_linkedin" name="link_linkedin" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-9 offset-sm-3">
+                      <input type="submit" value="Save Changes" class="btn btn-primary">
+                    </div>
+                  </div>
+                </form>
+
+                <form *ngIf="user.is_alumni === false" class="form-horizontal" (submit)="onSaveSubmit()">
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Email</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" disabled class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Password</label>
+                    <div class="col-sm-9">
+                      <input type="password" [(ngModel)]="password" name="password" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Major</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="major" name="major" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Research Area</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="research_area" name="research_area" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Facebook</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="link_facebook" name="link_facebook" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Twitter</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="link_twitter" name="link_twitter" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Linkedin</label>
+                    <div class="col-sm-9">
+                      <input type="text" [(ngModel)]="link_linkedin" name="link_linkedin" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-9 offset-sm-3">
+                      <input type="submit" value="Save Changes" class="btn btn-primary">
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
   </div>
 </div>

@@ -17,32 +17,25 @@
         <div class="col-lg-6 bg-white">
           <div class="form d-flex align-items-center">
             <div class="content">
+
               <!-- Form -->
-              <form id="register-form" (submit)="onRegisterSubmit()">
+              <form id="register-form" (submit)="onSelectSubmit()">
 
-                <div class="form-group">
-                  <input type="text" [(ngModel)]="name" name="name" class="input-material">
-                  <label class="label-material">Name</label>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 form-control-label">You Are?</label>
+                  <div class="col-sm-9 select">
+                    <select [(ngModel)]="status" name="status" class="form-control">
+                      <option *ngFor="let o of options" [ngValue]="o.value">
+                        {{o.viewValue}}
+                      </option>
+                    </select>
+                  </div>
                 </div>
 
-                <div class="form-group">
-                  <input type="text" [(ngModel)]="username" name="username" class="input-material">
-                  <label class="label-material">Username</label>
-                </div>
-
-                <div class="form-group">
-                  <input type="text" [(ngModel)]="email" name="email" class="input-material">
-                  <label class="label-material">Email</label>
-                </div>
-
-                <div class="form-group">
-                  <input type="password" [(ngModel)]="password" name="password" class="input-material">
-                  <label class="label-material">Password</label>
-                </div>
-
-                <input type="submit" value="Register" class="btn btn-primary">
+                <input type="submit" value="Select" class="btn btn-primary">
               </form>
-
+              <br>
               <small>Already have an account? </small><a [routerLink]="['/login']" class="signup">Login</a>
             </div>
           </div>

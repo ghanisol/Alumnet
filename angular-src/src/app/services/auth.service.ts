@@ -25,6 +25,15 @@ export class AuthService {
   		.map(res => res.json());
   }
 
+  updateUser(user){
+  	let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+  	return this.http.post('http://localhost:3000/users/update', user, {headers:headers})
+  		.map(res => res.json());
+  }
+
   getProfile(){
     let headers = new Headers();
     this.loadToken();
