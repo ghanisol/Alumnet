@@ -27,6 +27,8 @@ var PostsService = (function () {
     }
     PostsService.prototype.getNotifications = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        this.loadToken();
+        headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         return this.http.post('http://localhost:3000/posts/getnotifications', user, { headers: headers })
             .map(function (res) { return res.json(); });

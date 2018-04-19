@@ -111,7 +111,7 @@ router.get('/getposts', passport.authenticate('jwt', {session:false}), (req, res
 });
 
 // Get Notifications
-router.post('/getnotifications', (req, res, next) => {
+router.post('/getnotifications', passport.authenticate('jwt', {session:false}), (req, res, next) => {
   const user_id = req.body.user_id;
   Notification.getNotificationsByUser(user_id, (err, notifications) => {
     if(err){
