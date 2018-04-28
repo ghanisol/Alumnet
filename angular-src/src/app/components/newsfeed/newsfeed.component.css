@@ -6,4 +6,10 @@
 
 .btn-comment {
   font-size: 10px;
+  padding-left: 10px;
+}
+
+.div-comment {
+  padding-left: 40px;
+  background-color: #f7f7f7;
 }

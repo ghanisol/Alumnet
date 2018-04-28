@@ -26,7 +26,7 @@
           <div class="feed d-flex justify-content-between">
             <div class="feed-body d-flex justify-content-between">
               <!-- Image -->
-              <a href="#" class="feed-profile"><img src="assets/img/ghani_pic.jpg" alt="person" class="img-fluid rounded-circle"></a>
+              <a href="#" class="feed-profile"><img src="assets/img/avatar_d.png" alt="person" class="img-fluid rounded-circle"></a>
               <!-- Post Message -->
               <div class="content">
                 <h5>{{post.user_name}}</h5><span>{{post.message}}</span>
@@ -51,10 +51,10 @@
           <div class="comment-form quote has-shadow">
             <form>
               <div class="form-group row">
-                <div class="col-sm-11">
+                <div class="col-sm-10">
                   <input type="text" [(ngModel)]="post.temp_comment" placeholder="comment" name="comment" class="input-material">
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2 div-comment">
                   <button (click)="onCommentSubmit(post._id, post.temp_comment)" class="btn btn-comment btn-primary">Comment</button>
                 </div>
               </div>
