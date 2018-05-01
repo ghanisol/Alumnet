@@ -44,8 +44,26 @@ router.post('/register', (req, res, next) => {
 			res.json({success: true, msg: 'User registered'});
 		}
 	});
+});
 
+// Search users
+router.post('/search', passport.authenticate('jwt', {session:false}), (req, res, next) => {
+	let query = [
+		{ major: req.body.major },
+		{ research_area: req.body.research_area },
+		{ university: req.body.university },
+		{ city: req.body.city },
+		{ state: req.body.state },
+		{ country: req.body.country }
+	];
 
+	User.getUsersByQuery(query, (err, users) => {
+		if(err){
+			res.json({success: false, msg:'Failed to search users'});
+		} else {
+			res.json({success: true, msg: 'Users found', users: users});
+		}
+	});
 });
 
 // Update profile

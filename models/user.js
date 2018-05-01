@@ -98,6 +98,10 @@ module.exports.getUserByEmail = function(email, callback) {
 	User.findOne(query, callback);
 }
 
+module.exports.getUsersByQuery = function(query, callback) {
+	User.find({$and:[{$or:query}, {is_alumni:true} ]}, callback);
+}
+
 module.exports.addUser = function(newUser, callback){
 	bcrypt.genSalt(10, (err, salt) => {
 		bcrypt.hash(newUser.password, salt, (err, hash) => {

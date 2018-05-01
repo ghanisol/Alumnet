@@ -19,15 +19,18 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { RegisterAlumniComponent } from './components/register-alumni/register-alumni.component';
 import { RegisterStudentComponent } from './components/register-student/register-student.component';
+import { NewpostComponent } from './components/newpost/newpost.component';
 
 import {FlashMessagesModule} from 'angular2-flash-messages';
 
 import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
 import {PostsService} from './services/posts.service';
+import {SearchService} from './services/search.service';
+
 import {AuthGuard} from './guards/auth.guard';
 import {UnAuthGuard} from './guards/unauth.guard';
-import { NewpostComponent } from './components/newpost/newpost.component';
+
 
 
 const appRoutes: Routes = [
@@ -71,7 +74,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, AuthService, PostsService, AuthGuard, UnAuthGuard],
+  providers: [ValidateService, AuthService, PostsService, SearchService, AuthGuard, UnAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
