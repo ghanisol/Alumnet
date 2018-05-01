@@ -44,6 +44,7 @@ const appRoutes: Routes = [
   {path:'chat', component: ChatComponent, canActivate:[AuthGuard]},
   {path:'map', component: MapComponent, canActivate:[AuthGuard]},
   {path:'search', component: SearchComponent, canActivate:[AuthGuard]},
+  {path:'searchresult', component: SearchresultComponent, canActivate:[AuthGuard]},
   {path:'editprofile', component: EditprofileComponent, canActivate:[AuthGuard]},
   {path:'notifications', component: NotificationsComponent, canActivate:[AuthGuard]}
 ]

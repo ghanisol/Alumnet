@@ -1,3 +1,54 @@
-<p>
-  searchresult works!
-</p>
+<div class="page-content d-flex align-items-stretch">
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- Content | Search Results -->
+  <div *ngIf="result" class="content-inner">
+    <!-- Page Header-->
+    <header class="page-header">
+      <div class="container-fluid">
+        <h2 class="no-margin-bottom">Search Results</h2>
+      </div>
+    </header>
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+
+            <div *ngFor="let user of result" class="col-lg-4">
+              <div class="client card">
+                <div class="card-body text-center">
+                  <!-- Profile Picture -->
+                  <div class="client-avatar"><img src="assets/img/avatar_d.png" alt="..." class="img-fluid rounded-circle">
+                      <div class="status bg-green"></div>
+                  </div>
+                  <!-- Information -->
+                  <div class="client-title">
+                      <h3>{{user.name.first_name}} {{user.name.last_name}}</h3><span>{{user.university}}</span><span>{{user.city}}, {{user.country}}</span><a href="#">Message</a>
+                  </div>
+
+                  <div class="client-info">
+                    <div class="row">
+                      <div class="col-6"><strong>Major</strong><br><small>{{user.major}}</small></div>
+                      <div class="col-6"><strong>Research Areas</strong><br><small>{{user.research_area}}</small></div>
+                    </div>
+                  </div>
+                  <div class="client-social d-flex justify-content-between">
+                    <a href={{user.link_facebook}} target="_blank"><i class="fa fa-facebook"></i></a>
+                    <a href={{user.link_twitter}} target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a href={{user.link_linkedin}} target="_blank"><i class="fa fa-linkedin"></i></a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <app-footer></app-footer>
+  </div>
+</div>

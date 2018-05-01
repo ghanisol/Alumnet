@@ -14,8 +14,6 @@ import {Router} from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  result: any;
-
   major: String;
   research_area: String;
   university: String;
@@ -49,15 +47,13 @@ export class SearchComponent implements OnInit {
     this.searchService.getUsers(query).subscribe(data => {
       if(data.success){
         this.flashMessage.show('Result Found', {cssClass: 'alert-success', timeout: 3000});
-        this.result = data.users;
-        console.log(this.result);
+        this.searchService.changeResult(data.users);
+        this.router.navigate(['/searchresult']);
       } else {
         this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
         this.router.navigate(['/search']);
       }
     });
-
-
   }
 
 }

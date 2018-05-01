@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class SearchService {
+
+  private resultSource = new BehaviorSubject<any>({});
+  currentResult = this.resultSource.asObservable();
 
   authToken: any;
   query: any;
@@ -24,5 +28,9 @@ export class SearchService {
   loadToken(){
     const token = localStorage.getItem('id_token');
     this.authToken = token;
+  }
+
+  changeResult(result: any) {
+    this.resultSource.next(result);
   }
 }
