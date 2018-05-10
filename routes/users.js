@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const User = require('../models/user');
 const Notification = require('../models/notification');
+const Chat = require('../models/chat');
 
 // Register
 router.post('/register', (req, res, next) => {
@@ -34,6 +35,16 @@ router.post('/register', (req, res, next) => {
 	});
 
 	Notification.addUserNotifications(newUserNotifications, (err, notifications) => {
+			if(err) throw err;
+	});
+
+	let newUserChats = new Chat({
+		_id: new mongoose.Types.ObjectId(),
+		user: newUser._id,
+		messages: []
+	});
+
+	Chat.addUserChats(newUserChats, (err, notifications) => {
 			if(err) throw err;
 	});
 

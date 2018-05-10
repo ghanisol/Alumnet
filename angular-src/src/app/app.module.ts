@@ -27,6 +27,7 @@ import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
 import {PostsService} from './services/posts.service';
 import {SearchService} from './services/search.service';
+import {ChatService} from './services/chat.service';
 
 import {AuthGuard} from './guards/auth.guard';
 import {UnAuthGuard} from './guards/unauth.guard';
@@ -75,7 +76,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, AuthService, PostsService, SearchService, AuthGuard, UnAuthGuard],
+  providers: [ValidateService, AuthService, PostsService, SearchService, ChatService, AuthGuard, UnAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-<div class="page-content d-flex align-items-stretch">
+<div *ngIf="messages" class="page-content d-flex align-items-stretch">
   <!-- Sidebar -->
   <app-sidebar></app-sidebar>
   <!-- Content -->
@@ -9,6 +9,113 @@
         <h2 class="no-margin-bottom">Chat</h2>
       </div>
     </header>
+
+    <section *ngIf="!chat_user" class="no-padding-top">
+      <div class="daily-feeds card">
+        <div class="card-body no-padding">
+
+          <!--Messages -->
+          <div *ngFor="let message of messages;" class="item clearfix">
+            <div (click)="onChatSubmit(message[0].to_id, message[0].from_id, message[0].to_name, message[0].from_name )" class="feed d-flex justify-content-between">
+              <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="assets/img/avatar_d.png" alt="person" class="img-fluid rounded-circle"></a>
+                <div class="content">
+                  <h5 *ngIf="user_id == message[0].to_id" >{{message[0].from_name}}</h5>
+                  <h5 *ngIf="user_id == message[0].from_id" >{{message[0].to_name}}</h5>
+                  <span *ngIf="user_id == message[0].from_id">You : </span>
+                  <span>{{message[0].message}}</span>
+                </div>
+              </div>
+              <div class="date text-right"><small>{{message[0].created_at}}</small></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="chat_user" class="no-padding-top">
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="daily-feeds card">
+              <div class="card-body no-padding">
+
+                <!--Messages -->
+                <div *ngFor="let message of messages;" class="item clearfix">
+                  <div (click)="onChatSubmit(message[0].to_id, message[0].from_id)" class="chat-box feed d-flex justify-content-between">
+                    <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="assets/img/avatar_d.png" alt="person" class="img-fluid rounded-circle"></a>
+                      <div class="content">
+                        <h5 *ngIf="user_id == message[0].to_id" >{{message[0].from_name}}</h5>
+                        <h5 *ngIf="user_id == message[0].from_id" >{{message[0].to_name}}</h5>
+                        <span *ngIf="user_id == message[0].from_id">You : </span>
+                        <span >{{message[0].message}}</span>
+                      </div>
+                    </div>
+                    <div class="date text-right"><small>{{message[0].created_at}}</small></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat -->
+          <div class="col-lg-8">
+            <div class="daily-feeds card">
+              <div class="card-body no-padding">
+
+                <!-- Messages -->
+                <div *ngFor="let message of messages">
+                  <div *ngIf="message[0].to_id == chat_user || message[0].from_id == chat_user">
+                    <div *ngFor="let m of message" class="item clearfix">
+
+                      <div *ngIf="m.from_id == chat_user" class="feed d-flex justify-content-between">
+                        <div class="feed-body d-flex justify-content-between">
+                          <a href="#" class="feed-profile"><img src="assets/img/avatar_d.png" alt="person" class="img-fluid rounded-circle" style="height:30px;"></a>
+                          <div class="content" style="padding-top:5px; padding-bottom:5px; padding-left:10px; padding-right:10px; border: 2px solid #f0f0f0; border-radius: 25px; background-color: #f0f0f0;">
+                            <span style="color:black">{{m.message}}</span>
+                          </div>
+                        </div>
+                        <div class="date text-right"><small>{{m.created_at}}</small></div>
+                      </div>
+
+                      <div *ngIf="m.to_id == chat_user" class="feed d-flex justify-content-between" style="float:right;">
+                        <div class="feed d-flex justify-content-between" >
+                          <div class="content " style="padding-top:5px; padding-bottom:5px; padding-left:10px; padding-right:10px; border: 2px solid #0084ff; border-radius: 25px; background-color: #0084ff;">
+                            <span style="color:white">{{m.message}}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Message Form -->
+                <div class="message-form quote has-shadow">
+                  <form>
+                    <div class="form-group row">
+                      <div class="col-sm-10">
+                        <input type="text" [(ngModel)]="temp_message" placeholder="type a message ..." name="temp_message" class="input-material">
+                      </div>
+                      <div class="col-sm-2 div-message">
+                        <button (click)="onMessageSubmit(temp_message)" class="btn btn-message btn-primary">Send</button>
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
     <!-- Footer -->
     <app-footer></app-footer>

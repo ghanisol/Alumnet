@@ -1,0 +1,19 @@
+.chat-box {
+  position: relative;
+}
+
+.message-form {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 10px;
+}
+
+.btn-comment {
+  font-size: 10px;
+  padding-left: 10px;
+}
+
+.div-message {
+  padding-left: 40px;
+  background-color: #f7f7f7;
+}
